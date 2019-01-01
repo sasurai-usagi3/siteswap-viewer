@@ -20,6 +20,8 @@ class Ball {
       // TODO: エラーハンドリング
     }
 
+    this.hold = false;
+
     this.vx = 0;
     this.vy = 0;
 
@@ -28,7 +30,7 @@ class Ball {
     ball.style.left = `${this.x}px`;
     ball.style.backgroundColor = color;
 
-    to.appendChild(ball)
+    to.appendChild(ball);
 
     this.target = ball;
   }
@@ -38,8 +40,37 @@ class Ball {
     this.vy = vy;
   }
 
+  thrown(dir, n) {
+    let baseX = 0;
+
+    if(dir === 'right') {
+      baseX = -17;
+    } else if(dir === 'left') {
+      baseX = 17;
+    } else {
+      // TODO: エラーハンドリング
+    }
+
+    this.hold = false;
+
+    if(n === 1) {
+      this.setVelocity(baseX, 4.5);
+    } else if(n === 2) {
+      this.hold = true;
+      this.setVelocity(0, 0);
+    } else if(n % 2 === 0) {
+      this.setVelocity(0, 5 * n - 0.5);
+    } else {
+      this.setVelocity(baseX / n, 5 * n - 0.5);
+    }
+  }
+
   update() {
     const g = 1;
+
+    if(this.hold) {
+      return;
+    }
 
     this.x += this.vx;
     this.y -= this.vy;
