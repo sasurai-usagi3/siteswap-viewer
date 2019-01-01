@@ -12,6 +12,7 @@ body {
   background-color: #000;
   width: 320px;
   height: 320px;
+  overflow: hidden;
 }
 
 .p-ball {
