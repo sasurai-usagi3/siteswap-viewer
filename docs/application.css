@@ -11,7 +11,8 @@ body {
   margin: 0 auto;
   background-color: #000;
   width: 320px;
-  height: 320px;
+  height: 640px;
+  overflow: hidden;
 }
 
 .p-ball {
@@ -19,6 +20,7 @@ body {
   width: 20px;
   height: 20px;
   border-radius: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .p-hand {
