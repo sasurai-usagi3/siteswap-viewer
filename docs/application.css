@@ -6,11 +6,14 @@ body {
   margin: 20px 0 0;
 }
 
+.l-container {
+  width: 320px;
+  margin: 0 auto;
+}
+
 .p-window {
   position: relative;
-  margin: 0 auto;
   background-color: #000;
-  width: 320px;
   height: 640px;
   overflow: hidden;
 }
