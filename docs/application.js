@@ -33,6 +33,11 @@ class Ball {
     this.target = ball;
   }
 
+  setVelocity(vx, vy) {
+    this.vx = vx;
+    this.vy = vy;
+  }
+
   update() {
     const g = 1;
 
