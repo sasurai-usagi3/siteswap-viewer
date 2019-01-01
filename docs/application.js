@@ -6,9 +6,20 @@ const frameRate = 10;
 
 window.addEventListener('load', () => {
   const field = document.getElementById('js-field');
+  const patternForm = document.getElementById('js-pattern-form');
+  const execBtn = document.getElementById('js-exec-btn');
   const ballManager = new BallManager();
-  const siteswapPattern = [5, 3, 1];
+  let siteswapPattern = [3];
   let frameCounter = 0, hand = 0, patternIndex = 0;
+
+  execBtn.addEventListener('click', () => {
+    ballManager.clear(field);
+    frameCounter = 0;
+    hand = 0;
+    patternIndex = 0;
+    siteswapPattern = patternForm.value.split(',').map(x => Number(x));
+  });
+
 
   setInterval(() => {
     if(frameCounter % frameRate === 0) {
@@ -57,6 +68,7 @@ class Ball {
     to.appendChild(ball);
 
     this.target = ball;
+    this.DOMInstance = ball;
   }
 
   setVelocity(vx, vy) {
@@ -144,5 +156,13 @@ class BallManager {
     this.queue.push({ball, count});
 
     this.queue = this.queue.sort((p, q) => p.count - q.count);
+  }
+
+  clear(to) {
+    this.queue.forEach(x => {
+      to.removeChild(x.ball.DOMInstance);
+      this.queue = [];
+      this.colorIndex = 0;
+    });
   }
 }
