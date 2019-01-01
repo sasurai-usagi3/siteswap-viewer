@@ -1,5 +1,5 @@
-// NOTE: 左ボール中心座標(75, 250)
-// NOTE: 右ボール中心座標(245, 250)
+// NOTE: 左ボール中心座標(75, 570)
+// NOTE: 右ボール中心座標(245, 570)
 
 const timeStep = 25;
 const frameRate = 10;
@@ -34,7 +34,7 @@ class Ball {
   constructor(pos, to, color) {
     const ball = document.createElement('div');
 
-    this.y = 250;
+    this.y = 570;
 
     if(pos === 'right') {
       this.x = 75;
