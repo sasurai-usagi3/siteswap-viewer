@@ -1,9 +1,33 @@
 // NOTE: 左ボール中心座標(75, 250)
 // NOTE: 右ボール中心座標(245, 250)
 
+const timeStep = 25;
+const frameRate = 10;
+
 window.addEventListener('load', () => {
-  let field = document.getElementById('js-field');
-  new Ball('right', field, '#fff');
+  const field = document.getElementById('js-field');
+  const ballManager = new BallManager();
+  const siteswapPattern = [5, 3, 1];
+  let frameCounter = 0, hand = 0, patternIndex = 0;
+
+  setInterval(() => {
+    if(frameCounter % frameRate === 0) {
+      const thrownPattern = siteswapPattern[patternIndex];
+
+      if(thrownPattern !== 0) {
+        const ball = ballManager.next((hand % 2 === 0) ? 'right' : 'left', field);
+
+        ball.thrown((hand % 2 === 0) ? 'left' : 'right', thrownPattern);
+        ballManager.set(ball, 10 * thrownPattern);
+      }
+
+      hand = 1 - hand;
+      patternIndex = (patternIndex + 1) % siteswapPattern.length;
+    }
+
+    ballManager.update();
+    ++frameCounter;
+  }, timeStep);
 });
 
 class Ball {
