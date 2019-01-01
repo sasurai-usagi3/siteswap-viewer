@@ -20,6 +20,9 @@ class Ball {
       // TODO: エラーハンドリング
     }
 
+    this.vx = 0;
+    this.vy = 0;
+
     ball.classList.add('p-ball');
     ball.style.top = `${this.y}px`;
     ball.style.left = `${this.x}px`;
@@ -28,5 +31,21 @@ class Ball {
     to.appendChild(ball)
 
     this.target = ball;
+  }
+
+  update() {
+    const g = 1;
+
+    this.x += this.vx;
+    this.y -= this.vy;
+
+    this.vy -= g;
+
+    this.updatePosition(this.x, this.y);
+  }
+
+  updatePosition(x, y) {
+    this.target.style.top = `${y}px`;
+    this.target.style.left = `${x}px`;
   }
 }
