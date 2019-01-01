@@ -8,13 +8,19 @@
   <link rel="stylesheet" href="application.css">
 </head>
 <body>
-  <div id="js-field" class="p-window">
-    <div class="p-hand p-hand--left"></div>
-    <div class="p-hand p-hand--right"></div>
-  </div>
-  <div>
-    <input type="text" id="js-pattern-form" placeholder="ex)5,3,1 (空白などは入れないでください">
-    <button type="button" id="js-exec-btn">実行</button>
+  <div class="l-container">
+    <h1>Siteswap Viewer</h1>
+    <p>サイトスワップのパターンをアニメーションで見られるサイトです。5ボールまで対応しています。
+      xや同時投げには対応してないほか不正なパターンも受け付けてしまうなど簡素なものになっています。
+    </p>
+    <div id="js-field" class="p-window">
+      <div class="p-hand p-hand--left"></div>
+      <div class="p-hand p-hand--right"></div>
+    </div>
+    <div class="p-pattern-form">
+      <input type="text" id="js-pattern-form" class="p-pattern-form__text-field" placeholder="ex)5,3,1 (空白などは入れないでください">
+      <button type="button" id="js-exec-btn" class="p-pattern-form__btn">実行</button>
+    </div>
   </div>
 </body>
 </html>

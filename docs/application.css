@@ -1,16 +1,20 @@
 html {
   margin: 0;
+  font-size: 14px;
 }
 
 body {
   margin: 20px 0 0;
 }
 
+.l-container {
+  width: 320px;
+  margin: 0 auto;
+}
+
 .p-window {
   position: relative;
-  margin: 0 auto;
   background-color: #000;
-  width: 320px;
   height: 640px;
   overflow: hidden;
 }
@@ -38,4 +42,27 @@ body {
 .p-hand--right {
   bottom: 50px;
   right: 50px;
+}
+
+.p-pattern-form {
+  display: flex;
+  margin-top: 15px;
+}
+
+.p-pattern-form__text-field {
+  flex-grow: 1;
+  border: 1px solid #afaeae;
+  box-sizing: border-box;
+  font-size: 0.8rem;
+  padding: 0.5rem;
+}
+
+.p-pattern-form__text-field:focus {
+  outline: none;
+}
+
+.p-pattern-form__btn {
+  width: 20%;
+  box-sizing: border-box;
+  border: 1px solid #afaeae;
 }
