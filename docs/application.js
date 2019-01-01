@@ -85,3 +85,40 @@ class Ball {
     this.target.style.left = `${x}px`;
   }
 }
+
+class BallManager {
+  constructor() {
+    this.queue = [];
+    this.colorIndex = 0;
+  }
+
+  next(pos, to, color) {
+    const queueTop = this.queue[0];
+    const colors = ['#4286f4', '#ffb7b2', '#fdffb7', '#d1ffb2', '#ffffff'];
+
+    if(queueTop != null && queueTop.count === 0) {
+      return this.queue.shift().ball;
+    } else {
+      const ball = new Ball(pos, to, colors[this.colorIndex]);
+
+      this.colorIndex = (this.colorIndex + 1) % colors.length;
+
+      return ball;
+    }
+  }
+
+  update() {
+    this.queue.forEach(x => {
+      --x.count;
+      x.ball.update();
+    });
+
+    this.queue = this.queue.sort((p, q) => p.count - q.count);
+  }
+
+  set(ball, count) {
+    this.queue.push({ball, count});
+
+    this.queue = this.queue.sort((p, q) => p.count - q.count);
+  }
+}
