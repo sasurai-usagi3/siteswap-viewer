@@ -9,15 +9,28 @@ window.addEventListener('load', () => {
   const patternForm = document.getElementById('js-pattern-form');
   const execBtn = document.getElementById('js-exec-btn');
   const ballManager = new BallManager();
+  const isValidPattern = pattern => {
+    const isAvgInteger = pattern.reduce((r, x) => r + x) % pattern.length === 0;
+    const isUniqueRemains = pattern.map((x, i) => (x + i) % pattern.length).sort().every((x, i) => x === i);
+
+    return isAvgInteger && isUniqueRemains;
+  };
   let siteswapPattern = [3];
   let frameCounter = 0, hand = 0, patternIndex = 0;
 
   execBtn.addEventListener('click', () => {
+    const newPattern = patternForm.value.split(',').map(x => Number(x));
+
+    if(!isValidPattern(newPattern)) {
+      alert('不正なパターンです');
+      return;
+    }
+
     ballManager.clear(field);
     frameCounter = 0;
     hand = 0;
     patternIndex = 0;
-    siteswapPattern = patternForm.value.split(',').map(x => Number(x));
+    siteswapPattern = newPattern;
   });
 
 
